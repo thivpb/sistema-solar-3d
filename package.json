@@ -1,0 +1,46 @@
+{
+  "name": "sistema-solar-3d",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Simulador do Sistema Solar em 3D. Integracao N-corpos simpletica sobre efemerides do JPL, com a camada educativa em portugues.",
+  "engines": {
+    "node": ">=20.19"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "servir": "node servidor.mjs",
+    "tipos": "tsc --noEmit",
+    "lint": "eslint .",
+    "arquitetura": "depcruise --config .dependency-cruiser.cjs --output-type err src testes",
+    "unidade": "vitest run",
+    "e2e": "playwright test",
+    "test": "npm run tipos && npm run lint && npm run arquitetura && npm run unidade && npm run e2e"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "^5.2.8",
+    "@preact/signals": "^2.3.1",
+    "preact": "^10.29.8",
+    "three": "^0.186.0"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.57.0",
+    "@preact/preset-vite": "^2.10.2",
+    "@types/node": "^24.10.1",
+    "@types/pngjs": "^6.0.5",
+    "@types/three": "^0.186.0",
+    "dependency-cruiser": "^18.4.0",
+    "eslint": "^10.11.0",
+    "globals": "^16.5.0",
+    "pixelmatch": "^7.1.0",
+    "pngjs": "^7.0.0",
+    "ssim.js": "^3.5.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.70.1",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  }
+}

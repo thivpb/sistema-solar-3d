@@ -1,0 +1,1110 @@
+{
+  "_leia_isto": "Gerado por ferramentas/gerar_luas.mjs. Nao edite a mao.",
+  "esquema": 1,
+  "fontes": {
+    "geometria": {
+      "url": "https://ssd.jpl.nasa.gov/sats/elem/",
+      "nota": "elementos medios; celulas transcritas sem parafrase"
+    },
+    "periodo": {
+      "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+      "nota": "taxa da longitude media, ajustada sobre varias voltas de vetores. A coluna P da tabela de elementos NAO e o periodo sideral de todas as luas: em Io difere 0,5%, o que vale 270 graus de fase por ano."
+    }
+  },
+  "epoca": {
+    "jd": 2451545,
+    "tdb": "2000-01-01.5"
+  },
+  "epocaDoPrograma": {
+    "jd": 2461041.5,
+    "tdb": "2026-01-01.0"
+  },
+  "diasAteAEpocaDoPrograma": 9496.5,
+  "identidade": "taxaDaAnomaliaMedia = taxaSideralMedida - taxaDoPeriastro - taxaDoNo",
+  "luas": [
+    {
+      "chave": "lua",
+      "gmKm3S2": 4902.8,
+      "gmUa3Dia2": 1.0931894359896624e-11,
+      "gmIncertezaKm3S2": 0.001,
+      "gmSolucao": "DE440",
+      "raioMedioKm": 1737.4,
+      "raioIncertezaKm": 0.1,
+      "nome": "Moon",
+      "pai": "terra",
+      "planeta": "Earth",
+      "efemeride": "DE405/LE405",
+      "plano": "ecliptic",
+      "epoca": "2000-01-01.5",
+      "aKm": 384400,
+      "excentricidade": 0.0554,
+      "inclinacaoGraus": 5.16,
+      "noGraus": 125.08,
+      "periastroGraus": 318.15,
+      "anomaliaMediaGraus": 135.27,
+      "anomaliaMediaDaTabelaGraus": 135.27,
+      "divergenciaDaTabelaGraus": 0,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 0,
+        "dec": 90
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 7580,
+          "m0Graus": 135.183
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 8128,
+          "m0Graus": 135.849
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 61175,
+          "m0Graus": 135.205
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 61233,
+          "m0Graus": 134.539
+        }
+      ],
+      "rmsNaMedicaoKm": 7580,
+      "fatorDoNoNaIdentidade": "1",
+      "periodoDaTabelaDias": 27.322,
+      "taxaDoPeriastroGrausDia": 0.164353223839846,
+      "taxaDoNoGrausDia": -0.052990660396105185,
+      "taxaSideralMedidaGrausDia": 13.176328367378817,
+      "taxaDaAnomaliaMediaGrausDia": 13.064965803935076,
+      "medicao": {
+        "amostras": {
+          "janelaA": 437,
+          "janelaB": 437
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 13.177164742928488,
+        "voltasEntreAsJanelas": 214,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": null,
+      "poloDecGraus": null,
+      "tiltGraus": null
+    },
+    {
+      "chave": "fobos",
+      "gmKm3S2": 0.0007087,
+      "gmUa3Dia2": 1.5802059094514845e-18,
+      "gmIncertezaKm3S2": 6e-7,
+      "gmSolucao": "MAR097",
+      "raioMedioKm": 11.08,
+      "raioIncertezaKm": 0.04,
+      "nome": "Phobos",
+      "pai": "marte",
+      "planeta": "Mars",
+      "efemeride": "MAR099",
+      "plano": "Laplace",
+      "epoca": "2000-01-01.5",
+      "aKm": 9375,
+      "excentricidade": 0.015,
+      "inclinacaoGraus": 1.1,
+      "noGraus": 169.2,
+      "periastroGraus": 216.3,
+      "anomaliaMediaGraus": 189.7,
+      "anomaliaMediaDaTabelaGraus": 189.7,
+      "divergenciaDaTabelaGraus": 0,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 317.7,
+        "dec": 52.9
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 337,
+          "m0Graus": 189.863
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 336,
+          "m0Graus": 189.618
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 361,
+          "m0Graus": 189.608
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 362,
+          "m0Graus": 189.363
+        }
+      ],
+      "rmsNaMedicaoKm": 337,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 0.3187,
+      "taxaDoPeriastroGrausDia": 0.8960238939705059,
+      "taxaDoNoGrausDia": -0.42853316668154634,
+      "taxaSideralMedidaGrausDia": 1128.844813763568,
+      "taxaDaAnomaliaMediaGrausDia": 1128.3772440628109,
+      "medicao": {
+        "amostras": {
+          "janelaA": 481,
+          "janelaB": 481
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 1128.8464320304188,
+        "voltasEntreAsJanelas": 18325,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": 317.7,
+      "poloDecGraus": 52.9,
+      "tiltGraus": 0
+    },
+    {
+      "chave": "deimos",
+      "gmKm3S2": 0.0000962,
+      "gmUa3Dia2": 2.144995181165977e-19,
+      "gmIncertezaKm3S2": 0.0000028,
+      "gmSolucao": "MAR097",
+      "raioMedioKm": 6.2,
+      "raioIncertezaKm": 0.24,
+      "nome": "Deimos",
+      "pai": "marte",
+      "planeta": "Mars",
+      "efemeride": "MAR099",
+      "plano": "Laplace",
+      "epoca": "2000-01-01.5",
+      "aKm": 23457,
+      "excentricidade": 0,
+      "inclinacaoGraus": 1.8,
+      "noGraus": 54.3,
+      "periastroGraus": 0,
+      "anomaliaMediaGraus": 205.148,
+      "anomaliaMediaDaTabelaGraus": 205,
+      "divergenciaDaTabelaGraus": 0.148,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 316.6,
+        "dec": 53.5
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 24,
+          "m0Graus": 205.148
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 24,
+          "m0Graus": 205.122
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 787,
+          "m0Graus": 205.134
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 787,
+          "m0Graus": 205.107
+        }
+      ],
+      "rmsNaMedicaoKm": 24,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 1.2625,
+      "taxaDoPeriastroGrausDia": 0,
+      "taxaDoNoGrausDia": -0.017537834223622,
+      "taxaSideralMedidaGrausDia": 285.161949228556,
+      "taxaDaAnomaliaMediaGrausDia": 285.17947840891713,
+      "medicao": {
+        "amostras": {
+          "janelaA": 758,
+          "janelaB": 758
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 285.16204707440784,
+        "voltasEntreAsJanelas": 4629,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": 316.6,
+      "poloDecGraus": 53.5,
+      "tiltGraus": 0.9
+    },
+    {
+      "chave": "io",
+      "gmKm3S2": 5959.91547,
+      "gmUa3Dia2": 1.3288970855828024e-11,
+      "gmIncertezaKm3S2": 0.00135,
+      "gmSolucao": "JUP365",
+      "raioMedioKm": 1821.49,
+      "raioIncertezaKm": 0.5,
+      "nome": "Io",
+      "pai": "jupiter",
+      "planeta": "Jupiter",
+      "efemeride": "JUP365",
+      "plano": "Laplace",
+      "epoca": "2000-01-01.5",
+      "aKm": 421800,
+      "excentricidade": 0.004,
+      "inclinacaoGraus": 0,
+      "noGraus": 0,
+      "periastroGraus": 49.1,
+      "anomaliaMediaGraus": 330.9,
+      "anomaliaMediaDaTabelaGraus": 330.9,
+      "divergenciaDaTabelaGraus": 0,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 268.1,
+        "dec": 64.5
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 0,
+          "fatorDoNo": "cos i",
+          "rmsKm": 3841,
+          "m0Graus": 330.798
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 0,
+          "fatorDoNo": "1",
+          "rmsKm": 3841,
+          "m0Graus": 330.798
+        }
+      ],
+      "rmsNaMedicaoKm": 3841,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 1.762732,
+      "taxaDoPeriastroGrausDia": 0.739404563666584,
+      "taxaDoNoGrausDia": 0,
+      "taxaSideralMedidaGrausDia": 203.4889610105151,
+      "taxaDaAnomaliaMediaGrausDia": 202.74955644684852,
+      "medicao": {
+        "amostras": {
+          "janelaA": 1058,
+          "janelaB": 1058
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 203.48832629683903,
+        "voltasEntreAsJanelas": 3303,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": 268.1,
+      "poloDecGraus": 64.5,
+      "tiltGraus": 0
+    },
+    {
+      "chave": "europa",
+      "gmKm3S2": 3202.7121,
+      "gmUa3Dia2": 7.141166342164207e-12,
+      "gmIncertezaKm3S2": 0.00181,
+      "gmSolucao": "JUP365",
+      "raioMedioKm": 1560.8,
+      "raioIncertezaKm": 0.3,
+      "nome": "Europa",
+      "pai": "jupiter",
+      "planeta": "Jupiter",
+      "efemeride": "JUP365",
+      "plano": "Laplace",
+      "epoca": "2000-01-01.5",
+      "aKm": 671100,
+      "excentricidade": 0.009,
+      "inclinacaoGraus": 0.5,
+      "noGraus": 184,
+      "periastroGraus": 45,
+      "anomaliaMediaGraus": 345.4,
+      "anomaliaMediaDaTabelaGraus": 345.4,
+      "divergenciaDaTabelaGraus": 0,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 268.1,
+        "dec": 64.5
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 13706,
+          "m0Graus": 345.466
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 13706,
+          "m0Graus": 345.462
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 14764,
+          "m0Graus": 345.462
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 14764,
+          "m0Graus": 345.458
+        }
+      ],
+      "rmsNaMedicaoKm": 13706,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 3.525463,
+      "taxaDoPeriastroGrausDia": 0.7070489837643877,
+      "taxaDoNoGrausDia": -0.03263447067636436,
+      "taxaSideralMedidaGrausDia": 101.37472493176311,
+      "taxaDaAnomaliaMediaGrausDia": 100.70030917605443,
+      "medicao": {
+        "amostras": {
+          "janelaA": 706,
+          "janelaB": 706
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 101.37393917291936,
+        "voltasEntreAsJanelas": 1646,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": 268.1,
+      "poloDecGraus": 64.5,
+      "tiltGraus": 0
+    },
+    {
+      "chave": "ganimedes",
+      "gmKm3S2": 9887.83275,
+      "gmUa3Dia2": 2.204714511530679e-11,
+      "gmIncertezaKm3S2": 0.00247,
+      "gmSolucao": "JUP365",
+      "raioMedioKm": 2631.2,
+      "raioIncertezaKm": 1.7,
+      "nome": "Ganymede",
+      "pai": "jupiter",
+      "planeta": "Jupiter",
+      "efemeride": "JUP365",
+      "plano": "Laplace",
+      "epoca": "2000-01-01.5",
+      "aKm": 1070400,
+      "excentricidade": 0.001,
+      "inclinacaoGraus": 0.2,
+      "noGraus": 58.5,
+      "periastroGraus": 198.3,
+      "anomaliaMediaGraus": 324.85,
+      "anomaliaMediaDaTabelaGraus": 324.8,
+      "divergenciaDaTabelaGraus": 0.05,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 268.2,
+        "dec": 64.6
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 2022,
+          "m0Graus": 324.85
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 2022,
+          "m0Graus": 324.85
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 3535,
+          "m0Graus": 324.85
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 3535,
+          "m0Graus": 324.85
+        }
+      ],
+      "rmsNaMedicaoKm": 2022,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 7.155588,
+      "taxaDoPeriastroGrausDia": 0.014430627419328509,
+      "taxaDoNoGrausDia": -0.00715196269822335,
+      "taxaSideralMedidaGrausDia": 50.31760765446466,
+      "taxaDaAnomaliaMediaGrausDia": 50.310328946171346,
+      "medicao": {
+        "amostras": {
+          "janelaA": 716,
+          "janelaB": 716
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 50.31741549531682,
+        "voltasEntreAsJanelas": 817,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": 268.2,
+      "poloDecGraus": 64.6,
+      "tiltGraus": 0.1
+    },
+    {
+      "chave": "calisto",
+      "gmKm3S2": 7179.2834,
+      "gmUa3Dia2": 1.600782567279095e-11,
+      "gmIncertezaKm3S2": 0.00324,
+      "gmSolucao": "JUP365",
+      "raioMedioKm": 2410.3,
+      "raioIncertezaKm": 1.5,
+      "nome": "Callisto",
+      "pai": "jupiter",
+      "planeta": "Jupiter",
+      "efemeride": "JUP365",
+      "plano": "Laplace",
+      "epoca": "2000-01-01.5",
+      "aKm": 1882700,
+      "excentricidade": 0.007,
+      "inclinacaoGraus": 0.3,
+      "noGraus": 309.1,
+      "periastroGraus": 43.8,
+      "anomaliaMediaGraus": 87.479,
+      "anomaliaMediaDaTabelaGraus": 87.4,
+      "divergenciaDaTabelaGraus": 0.079,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 268.7,
+        "dec": 64.8
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 2348,
+          "m0Graus": 87.479
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 2348,
+          "m0Graus": 87.478
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 5179,
+          "m0Graus": 87.479
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 5179,
+          "m0Graus": 87.479
+        }
+      ],
+      "rmsNaMedicaoKm": 2348,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 16.69044,
+      "taxaDoPeriastroGrausDia": 0.0035464260828348936,
+      "taxaDoNoGrausDia": -0.0017074099257316522,
+      "taxaSideralMedidaGrausDia": 21.571074043616687,
+      "taxaDaAnomaliaMediaGrausDia": 21.569235004054832,
+      "medicao": {
+        "amostras": {
+          "janelaA": 739,
+          "janelaB": 739
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 21.570997883619388,
+        "voltasEntreAsJanelas": 350,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": 268.7,
+      "poloDecGraus": 64.8,
+      "tiltGraus": 0.4
+    },
+    {
+      "chave": "encelado",
+      "gmKm3S2": 7.21037,
+      "gmUa3Dia2": 1.6077140233288696e-14,
+      "gmIncertezaKm3S2": 0.00009,
+      "gmSolucao": "SAT441",
+      "raioMedioKm": 252.1,
+      "raioIncertezaKm": 0.2,
+      "nome": "Enceladus",
+      "pai": "saturno",
+      "planeta": "Saturn",
+      "efemeride": "SAT441",
+      "plano": "Laplace",
+      "epoca": "2000-01-01.5",
+      "aKm": 238400,
+      "excentricidade": 0.005,
+      "inclinacaoGraus": 0,
+      "noGraus": 0,
+      "periastroGraus": 119.5,
+      "anomaliaMediaGraus": 62.945,
+      "anomaliaMediaDaTabelaGraus": 57,
+      "divergenciaDaTabelaGraus": 5.945,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 40.6,
+        "dec": 83.5
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 0,
+          "fatorDoNo": "cos i",
+          "rmsKm": 1933,
+          "m0Graus": 62.945
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 0,
+          "fatorDoNo": "1",
+          "rmsKm": 1933,
+          "m0Graus": 62.945
+        }
+      ],
+      "rmsNaMedicaoKm": 1933,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 1.370218,
+      "taxaDoPeriastroGrausDia": 0.33800627001630884,
+      "taxaDoNoGrausDia": 0,
+      "taxaSideralMedidaGrausDia": 262.73183988472965,
+      "taxaDaAnomaliaMediaGrausDia": 262.39383361471334,
+      "medicao": {
+        "amostras": {
+          "janelaA": 823,
+          "janelaB": 823
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 262.7314570444014,
+        "voltasEntreAsJanelas": 4265,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": 40.6,
+      "poloDecGraus": 83.5,
+      "tiltGraus": 0
+    },
+    {
+      "chave": "tita",
+      "gmKm3S2": 8978.1371,
+      "gmUa3Dia2": 2.0018774236327943e-11,
+      "gmIncertezaKm3S2": 0.00025,
+      "gmSolucao": "SAT441",
+      "raioMedioKm": 2574.76,
+      "raioIncertezaKm": 0.02,
+      "nome": "Titan",
+      "pai": "saturno",
+      "planeta": "Saturn",
+      "efemeride": "SAT441",
+      "plano": "Laplace",
+      "epoca": "2000-01-01.5",
+      "aKm": 1221900,
+      "excentricidade": 0.029,
+      "inclinacaoGraus": 0.3,
+      "noGraus": 78.6,
+      "periastroGraus": 78.3,
+      "anomaliaMediaGraus": 214.812,
+      "anomaliaMediaDaTabelaGraus": 11.7,
+      "divergenciaDaTabelaGraus": 203.112,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 36.4,
+        "dec": 84
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 40902,
+          "m0Graus": 214.812
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 40902,
+          "m0Graus": 214.812
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 48500,
+          "m0Graus": 214.811
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 48500,
+          "m0Graus": 214.811
+        }
+      ],
+      "rmsNaMedicaoKm": 40902,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 15.945448,
+      "taxaDoPeriastroGrausDia": 0.0028430433926605416,
+      "taxaDoNoGrausDia": 0.0014339093695790572,
+      "taxaSideralMedidaGrausDia": 22.576976058122348,
+      "taxaDaAnomaliaMediaGrausDia": 22.57269912501578,
+      "medicao": {
+        "amostras": {
+          "janelaA": 736,
+          "janelaB": 736
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 22.577559644153435,
+        "voltasEntreAsJanelas": 366,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": 36.4,
+      "poloDecGraus": 84,
+      "tiltGraus": 0.6
+    },
+    {
+      "chave": "titania",
+      "gmKm3S2": 226.9,
+      "gmUa3Dia2": 5.059245390920585e-13,
+      "gmIncertezaKm3S2": 4.1,
+      "gmSolucao": "URA111",
+      "raioMedioKm": 788.9,
+      "raioIncertezaKm": 1.8,
+      "nome": "Titania",
+      "pai": "urano",
+      "planeta": "Uranus",
+      "efemeride": "URA182",
+      "plano": "equatorial",
+      "epoca": "2000-01-01.5",
+      "aKm": 436298,
+      "excentricidade": 0.002,
+      "inclinacaoGraus": 0.1,
+      "noGraus": 29.5,
+      "periastroGraus": 184,
+      "anomaliaMediaGraus": 68.1,
+      "anomaliaMediaDaTabelaGraus": 68.1,
+      "divergenciaDaTabelaGraus": 0,
+      "polo": "polo IAU invertido",
+      "poloUsado": {
+        "ra": 77.31099999999998,
+        "dec": 15.175
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 814,
+          "m0Graus": 68.075
+        },
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 814,
+          "m0Graus": 68.075
+        },
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 853,
+          "m0Graus": 68.075
+        },
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 853,
+          "m0Graus": 68.075
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 601748,
+          "m0Graus": 124.821
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 601748,
+          "m0Graus": 124.821
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 601749,
+          "m0Graus": 124.821
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 601749,
+          "m0Graus": 124.821
+        }
+      ],
+      "rmsNaMedicaoKm": 814,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 8.705869,
+      "taxaDoPeriastroGrausDia": 0.0016995666416650972,
+      "taxaDoNoGrausDia": 0.0005992927873166594,
+      "taxaSideralMedidaGrausDia": 41.35141179223628,
+      "taxaDaAnomaliaMediaGrausDia": 41.34911293372007,
+      "medicao": {
+        "amostras": {
+          "janelaA": 747,
+          "janelaB": 747
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 41.3513542807036,
+        "voltasEntreAsJanelas": 671,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": null,
+      "poloDecGraus": null,
+      "tiltGraus": null
+    },
+    {
+      "chave": "oberon",
+      "gmKm3S2": 205.3,
+      "gmUa3Dia2": 4.577624851282486e-13,
+      "gmIncertezaKm3S2": 5.8,
+      "gmSolucao": "URA111",
+      "raioMedioKm": 761.4,
+      "raioIncertezaKm": 2.6,
+      "nome": "Oberon",
+      "pai": "urano",
+      "planeta": "Uranus",
+      "efemeride": "URA182",
+      "plano": "equatorial",
+      "epoca": "2000-01-01.5",
+      "aKm": 583511,
+      "excentricidade": 0.002,
+      "inclinacaoGraus": 0.1,
+      "noGraus": 76.8,
+      "periastroGraus": 132.2,
+      "anomaliaMediaGraus": 143.6,
+      "anomaliaMediaDaTabelaGraus": 143.6,
+      "divergenciaDaTabelaGraus": 0,
+      "polo": "polo IAU invertido",
+      "poloUsado": {
+        "ra": 77.31099999999998,
+        "dec": 15.175
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 1591,
+          "m0Graus": 143.578
+        },
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 1591,
+          "m0Graus": 143.578
+        },
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 2272,
+          "m0Graus": 143.579
+        },
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 2272,
+          "m0Graus": 143.579
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 823860,
+          "m0Graus": 126.034
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 823860,
+          "m0Graus": 126.034
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 823862,
+          "m0Graus": 125.784
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 823862,
+          "m0Graus": 125.784
+        }
+      ],
+      "rmsNaMedicaoKm": 1591,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 13.463237,
+      "taxaDoPeriastroGrausDia": 0.006214384778237349,
+      "taxaDoNoGrausDia": -0.00511222255089553,
+      "taxaSideralMedidaGrausDia": 26.739476292107156,
+      "taxaDaAnomaliaMediaGrausDia": 26.738374122093457,
+      "medicao": {
+        "amostras": {
+          "janelaA": 735,
+          "janelaB": 735
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 26.739501386823694,
+        "voltasEntreAsJanelas": 434,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": null,
+      "poloDecGraus": null,
+      "tiltGraus": null
+    },
+    {
+      "chave": "miranda",
+      "gmKm3S2": 4.3,
+      "gmUa3Dia2": 9.587816298351041e-15,
+      "gmIncertezaKm3S2": 0.2,
+      "gmSolucao": "URA111",
+      "raioMedioKm": 235.8,
+      "raioIncertezaKm": 0.7,
+      "nome": "Miranda",
+      "pai": "urano",
+      "planeta": "Uranus",
+      "efemeride": "URA182",
+      "plano": "equatorial",
+      "epoca": "2000-01-01.5",
+      "aKm": 129846,
+      "excentricidade": 0.001,
+      "inclinacaoGraus": 4.4,
+      "noGraus": 100.9,
+      "periastroGraus": 154.8,
+      "anomaliaMediaGraus": 72.36,
+      "anomaliaMediaDaTabelaGraus": 73,
+      "divergenciaDaTabelaGraus": -0.64,
+      "polo": "polo IAU invertido",
+      "poloUsado": {
+        "ra": 77.31099999999998,
+        "dec": 15.175
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 2575,
+          "m0Graus": 72.36
+        },
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 2948,
+          "m0Graus": 71.854
+        },
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 10616,
+          "m0Graus": 71.855
+        },
+        {
+          "polo": "polo IAU invertido",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 10760,
+          "m0Graus": 71.349
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 183183,
+          "m0Graus": 271.457
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 183183,
+          "m0Graus": 270.92
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 183429,
+          "m0Graus": 297.569
+        },
+        {
+          "polo": "polo IAU",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 183429,
+          "m0Graus": 297.068
+        }
+      ],
+      "rmsNaMedicaoKm": 2575,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 1.413479,
+      "taxaDoPeriastroGrausDia": 0.1102613584704728,
+      "taxaDoNoGrausDia": -0.05541273308413766,
+      "taxaSideralMedidaGrausDia": 254.69106782708656,
+      "taxaDaAnomaliaMediaGrausDia": 254.63605588664603,
+      "medicao": {
+        "amostras": {
+          "janelaA": 849,
+          "janelaB": 849
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 254.69234467358743,
+        "voltasEntreAsJanelas": 4134,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": null,
+      "poloDecGraus": null,
+      "tiltGraus": null
+    },
+    {
+      "chave": "tritao",
+      "gmKm3S2": 1428.49546,
+      "gmUa3Dia2": 3.1851516403508066e-12,
+      "gmIncertezaKm3S2": 0.61603,
+      "gmSolucao": "NEP097",
+      "raioMedioKm": 1352.6,
+      "raioIncertezaKm": 2.4,
+      "nome": "Triton",
+      "pai": "netuno",
+      "planeta": "Neptune",
+      "efemeride": "NEP097",
+      "plano": "Laplace",
+      "epoca": "2000-01-01.5",
+      "aKm": 354800,
+      "excentricidade": 0,
+      "inclinacaoGraus": 157.3,
+      "noGraus": 178.1,
+      "periastroGraus": 0,
+      "anomaliaMediaGraus": 58.956,
+      "anomaliaMediaDaTabelaGraus": 63,
+      "divergenciaDaTabelaGraus": -4.044,
+      "polo": "polo da tabela",
+      "poloUsado": {
+        "ra": 299.8,
+        "dec": 43.1
+      },
+      "alternativasTestadas": [
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 10730,
+          "m0Graus": 58.956
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "cos i",
+          "rmsKm": 24316,
+          "m0Graus": 58.947
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": 1,
+          "fatorDoNo": "1",
+          "rmsKm": 62600,
+          "m0Graus": 76.213
+        },
+        {
+          "polo": "polo da tabela",
+          "sinalDoNo": -1,
+          "fatorDoNo": "1",
+          "rmsKm": 66313,
+          "m0Graus": 41.708
+        }
+      ],
+      "rmsNaMedicaoKm": 10730,
+      "fatorDoNoNaIdentidade": "cos i",
+      "periodoDaTabelaDias": 5.876994,
+      "taxaDoPeriastroGrausDia": 0,
+      "taxaDoNoGrausDia": 0.0028956730096967097,
+      "taxaSideralMedidaGrausDia": 61.25737598223689,
+      "taxaDaAnomaliaMediaGrausDia": 61.26004735088294,
+      "medicao": {
+        "amostras": {
+          "janelaA": 706,
+          "janelaB": 706
+        },
+        "janelaDias": 5844,
+        "de": "2000-01-01.5 TDB",
+        "taxaGrosseiraGrausDia": 61.25736934401024,
+        "voltasEntreAsJanelas": 994,
+        "metodo": "fase casada entre 2000 e 2020, na mesma base"
+      },
+      "poloRaGraus": 299.8,
+      "poloDecGraus": 43.1,
+      "tiltGraus": 0.4
+    }
+  ],
+  "gerado_em": "2026-09-29"
+}

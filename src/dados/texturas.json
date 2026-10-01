@@ -1,0 +1,303 @@
+{
+  "_leia_isto": "Gerado por ferramentas/baixar_texturas.mjs. Nao edite a mao: rode a ferramenta. O campo `procedencia` e obrigatorio e aparece no bloco de fontes do programa.",
+  "credito_obrigatorio": "Texturas por Solar System Scope (solarsystemscope.com), CC BY 4.0. Mosaicos das luas pelo USGS Astrogeology Science Center, domínio público.",
+  "gerado_em": "2026-09-30",
+  "mapas": [
+    {
+      "corpo": "mercurio",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/mercury.jpg",
+        "4k": "texturas/4k/mercury.jpg",
+        "8k": "texturas/8k/mercury.jpg"
+      },
+      "procedencia": "imagem",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "venus",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/venus_surface.jpg",
+        "4k": "texturas/4k/venus_surface.jpg",
+        "8k": "texturas/8k/venus_surface.jpg"
+      },
+      "procedencia": "derivado",
+      "nota": "radar do Magellan, recolorido — a superfície de Vênus nunca foi fotografada de órbita, porque a atmosfera é opaca",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "venus",
+      "papel": "nuvens",
+      "niveis": {
+        "2k": "texturas/2k/venus_atmosphere.jpg",
+        "4k": "texturas/4k/venus_atmosphere.jpg"
+      },
+      "procedencia": "imagem",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "4k"
+    },
+    {
+      "corpo": "terra",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/earth_daymap.jpg",
+        "4k": "texturas/4k/earth_daymap.jpg",
+        "8k": "texturas/8k/earth_daymap.jpg"
+      },
+      "procedencia": "imagem",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "terra",
+      "papel": "noite",
+      "niveis": {
+        "2k": "texturas/2k/earth_nightmap.jpg",
+        "4k": "texturas/4k/earth_nightmap.jpg",
+        "8k": "texturas/8k/earth_nightmap.jpg"
+      },
+      "procedencia": "imagem",
+      "nota": "luzes de cidade do programa Suomi NPP / VIIRS",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "terra",
+      "papel": "nuvens",
+      "niveis": {
+        "2k": "texturas/2k/earth_clouds.jpg",
+        "4k": "texturas/4k/earth_clouds.jpg",
+        "8k": "texturas/8k/earth_clouds.jpg"
+      },
+      "procedencia": "imagem",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "marte",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/mars.jpg",
+        "4k": "texturas/4k/mars.jpg",
+        "8k": "texturas/8k/mars.jpg"
+      },
+      "procedencia": "imagem",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "lua",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/moon.jpg",
+        "4k": "texturas/4k/moon.jpg",
+        "8k": "texturas/8k/moon.jpg"
+      },
+      "procedencia": "imagem",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "jupiter",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/jupiter.jpg",
+        "4k": "texturas/4k/jupiter.jpg"
+      },
+      "procedencia": "imagem",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "saturno",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/saturn.jpg",
+        "4k": "texturas/4k/saturn.jpg"
+      },
+      "procedencia": "imagem",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "saturno",
+      "papel": "anel",
+      "niveis": {
+        "2k": "texturas/2k/saturn_ring_alpha.png",
+        "4k": "texturas/2k/saturn_ring_alpha.png",
+        "8k": "texturas/2k/saturn_ring_alpha.png"
+      },
+      "procedencia": "derivado",
+      "nota": "o canal alfa é cobertura em incidência normal; o programa converte para profundidade óptica por tau = −ln(1 − alfa)",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "urano",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/uranus.jpg",
+        "4k": "texturas/4k/uranus.jpg"
+      },
+      "procedencia": "artistico",
+      "nota": "não existe imageamento global de Urano: a aparência é uma reconstrução a partir da cor integrada",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "2k"
+    },
+    {
+      "corpo": "netuno",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/neptune.jpg",
+        "4k": "texturas/4k/neptune.jpg"
+      },
+      "procedencia": "artistico",
+      "nota": "não existe imageamento global de Netuno: a aparência é uma reconstrução a partir da cor integrada",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "2k"
+    },
+    {
+      "corpo": "sol",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/sun.jpg",
+        "4k": "texturas/4k/sun.jpg"
+      },
+      "procedencia": "derivado",
+      "nota": "imagem solar tratada; a granulação real muda em minutos e esta é uma única fotografia",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "ceu",
+      "papel": "viaLactea",
+      "niveis": {
+        "2k": "texturas/2k/stars_milky_way.jpg",
+        "4k": "texturas/4k/stars_milky_way.jpg",
+        "8k": "texturas/8k/stars_milky_way.jpg"
+      },
+      "procedencia": "derivado",
+      "nota": "panorama da Via Láctea; o campo de estrelas nomeadas vem do catálogo Yale, não daqui",
+      "fonte": "Solar System Scope",
+      "url": "https://www.solarsystemscope.com/textures/",
+      "licenca": "CC BY 4.0",
+      "resolucao_da_fonte": "8k"
+    },
+    {
+      "corpo": "io",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/io.jpg",
+        "4k": "texturas/4k/io.jpg",
+        "8k": "texturas/8k/io.jpg"
+      },
+      "procedencia": "imagem",
+      "nota": "mosaico global Galileo SSI + Voyager, 1 km/pixel, com a cor do Galileo mesclada sobre o mosaico em tons de cinza",
+      "fonte": "USGS Astrogeology Science Center",
+      "url": "https://astrogeology.usgs.gov/",
+      "licenca": "domínio público (produto do governo dos EUA)",
+      "resolucao_da_fonte": "Io_GalileoSSI-Voyager_Global_Mosaic_ClrMerge_1km.tif",
+      "longitude_da_fonte": "positiva para oeste, de -180° a 180°",
+      "nota_da_projecao": "a imagem entregue foi espelhada e/ou girada para a convenção do programa: longitude 0 no meio, crescendo para leste"
+    },
+    {
+      "corpo": "europa",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/europa.jpg",
+        "4k": "texturas/4k/europa.jpg",
+        "8k": "texturas/8k/europa.jpg"
+      },
+      "procedencia": "imagem",
+      "nota": "mosaico global Voyager + Galileo SSI, 500 m/pixel, em tons de cinza — a cor do Galileo não cobre o globo inteiro",
+      "fonte": "USGS Astrogeology Science Center",
+      "url": "https://astrogeology.usgs.gov/",
+      "licenca": "domínio público (produto do governo dos EUA)",
+      "resolucao_da_fonte": "Europa_Voyager_GalileoSSI_global_mosaic_500m.tif",
+      "longitude_da_fonte": "positiva para oeste, de 0° a 360°",
+      "nota_da_projecao": "a imagem entregue foi espelhada e/ou girada para a convenção do programa: longitude 0 no meio, crescendo para leste"
+    },
+    {
+      "corpo": "ganimedes",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/ganymede.jpg",
+        "4k": "texturas/4k/ganymede.jpg",
+        "8k": "texturas/8k/ganymede.jpg"
+      },
+      "procedencia": "imagem",
+      "nota": "mosaico global colorido Voyager + Galileo SSI, 1.435 m/pixel",
+      "fonte": "USGS Astrogeology Science Center",
+      "url": "https://astrogeology.usgs.gov/",
+      "licenca": "domínio público (produto do governo dos EUA)",
+      "resolucao_da_fonte": "Ganymede_Voyager_GalileoSSI_Global_ClrMosaic_1435m.tif",
+      "longitude_da_fonte": "positiva para leste, de 0° a 360°",
+      "nota_da_projecao": "a imagem entregue foi espelhada e/ou girada para a convenção do programa: longitude 0 no meio, crescendo para leste"
+    },
+    {
+      "corpo": "calisto",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/callisto.jpg",
+        "4k": "texturas/4k/callisto.jpg",
+        "8k": "texturas/8k/callisto.jpg"
+      },
+      "procedencia": "imagem",
+      "nota": "mosaico global Voyager + Galileo SSI, 1 km/pixel, em tons de cinza",
+      "fonte": "USGS Astrogeology Science Center",
+      "url": "https://astrogeology.usgs.gov/",
+      "licenca": "domínio público (produto do governo dos EUA)",
+      "resolucao_da_fonte": "Callisto_Voyager_GalileoSSI_global_mosaic_1km.tif",
+      "longitude_da_fonte": "positiva para oeste, de 0° a 360°",
+      "nota_da_projecao": "a imagem entregue foi espelhada e/ou girada para a convenção do programa: longitude 0 no meio, crescendo para leste"
+    },
+    {
+      "corpo": "encelado",
+      "papel": "albedo",
+      "niveis": {
+        "2k": "texturas/2k/enceladus.jpg",
+        "4k": "texturas/4k/enceladus.jpg",
+        "8k": "texturas/8k/enceladus.jpg"
+      },
+      "procedencia": "imagem",
+      "nota": "mosaico global Cassini ISS, 110 m/pixel",
+      "fonte": "USGS Astrogeology Science Center",
+      "url": "https://astrogeology.usgs.gov/",
+      "licenca": "domínio público (produto do governo dos EUA)",
+      "resolucao_da_fonte": "Enceladus_Cassini_mosaic_global_110m.tif",
+      "longitude_da_fonte": "positiva para oeste, de -180° a 180°",
+      "nota_da_projecao": "a imagem entregue foi espelhada e/ou girada para a convenção do programa: longitude 0 no meio, crescendo para leste"
+    }
+  ]
+}

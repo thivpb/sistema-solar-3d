@@ -1,0 +1,12 @@
+{
+  "_leia_isto": "Gerado por ferramentas/gerar_estrelas.mjs. Nao edite a mao.",
+  "fonte": "Yale Bright Star Catalogue, 5a edicao revisada (Hoffleit & Warren, 1991)",
+  "transcricao": "https://github.com/brettonw/YaleBrightStarCatalog",
+  "arquivo": "ceu/bsc5.bin",
+  "formato": "12 bytes por estrela: ra float32 (rad), dec float32 (rad), magV int16 (centesimos), T uint16 (dezenas de K)",
+  "referencial": "equatorial ICRS; a cena gira para a ecliptica por eps = 23,4392911 graus",
+  "magnitude_limite": 6.5,
+  "estrelas": 8404,
+  "sem_temperatura_medida": 1,
+  "gerado_em": "2026-09-29"
+}

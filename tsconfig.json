@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2023",
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "moduleDetection": "force",
+    "types": ["vite/client", "node"],
+
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact",
+
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitOverride": true,
+    "noFallthroughCasesInSwitch": true,
+    "useUnknownInCatchVariables": true,
+    "verbatimModuleSyntax": true,
+
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+    "forceConsistentCasingInFileNames": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@contratos/*": ["src/contratos/*"],
+      "@nucleo/*": ["src/nucleo/*"],
+      "@dados/*": ["src/dados/*"],
+      "@app/*": ["src/app/*"],
+      "@cena/*": ["src/cena/*"],
+      "@rotulos/*": ["src/rotulos/*"],
+      "@interface/*": ["src/interface/*"]
+    }
+  },
+  "include": ["src", "testes", "ferramentas", "vite.config.ts", "vitest.config.ts", "playwright.config.ts"]
+}

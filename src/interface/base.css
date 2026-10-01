@@ -1,0 +1,1391 @@
+/**
+ * Tokens do tema, herdados de src/ui/tema.py.
+ *
+ * As cores tem nome de PAPEL, nao de aparencia: trocar o tema e trocar os valores aqui, sem
+ * cacar "aquele azul" em quinze arquivos. Todos os pares que a interface de fato usa passam
+ * pelo teste de contraste da WCAG 2.2 — 4,5:1 para texto, 3:1 para grafico —, e o build falha
+ * em qualquer par abaixo disso.
+ *
+ * --escala-texto e o unico botao da acessibilidade de tamanho: tudo mede em rem, entao mexer
+ * nele reescala fonte, alvo de toque e espacamento de uma vez. E ainda herda o zoom do navegador.
+ */
+:root {
+  --fundo: #0c0e16;
+  --painel: #121520;
+  --painel-alto: #1a1e2c;
+  --sobreposicao: #06080e;
+
+  --texto: #e8eaf0;
+  --texto-fraco: #989fb2;
+  --texto-apagado: #788cb4;
+
+  --borda: #3a4258;
+  --separador: #788cb4;
+  --grade: #282e40;
+  --marca-ligada: #253147;
+
+  --acento: #7caeff;
+  --foco: #8cbeff;
+  --aviso: #ffc45c;
+  --sucesso: #78d6a0;
+
+  --escala-texto: 1;
+  font-size: calc(17px * var(--escala-texto));
+
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  /* O programa ocupa a janela e NAO rola: quem rola sao as regioes de dentro,
+     a lateral e o corpo dos modais. Sem isto, focar um controle que esteja
+     fora da area visivel da lateral rolava a PAGINA — e a cena saia da tela
+     por 737 px, medido com "Texto maior" ligado e "Mais opcoes" aberto. */
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: 'Inter Variable', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* O anel de foco aparece no uso por teclado e some no clique. Em pygame isto era um clone
+   escrito a mao; no DOM e a especificacao. */
+:focus-visible {
+  outline: 2px solid var(--foco);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.construcao {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: max(2rem, 8vh) 1rem;
+}
+
+.construcao__etapa {
+  margin: 0 0 0.25rem;
+  color: var(--texto-apagado);
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.construcao h1 {
+  margin: 0 0 1rem;
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.construcao p + p {
+  margin-top: 1rem;
+  color: var(--texto-fraco);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Utilitarios
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Visivel para leitor de tela, invisivel na tela. Nao usa `display: none`
+   nem `visibility: hidden`, que tirariam o conteudo da arvore de acessibilidade
+   junto — que e o oposto do que se quer aqui. */
+.visualmente-oculto {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* O primeiro focavel da pagina. Fica escondido ate receber foco. */
+.pular {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  z-index: 100;
+  transform: translateY(-200%);
+  padding: 0.5rem 0.9rem;
+  background: var(--painel-alto);
+  color: var(--texto);
+  border-radius: 8px;
+  text-decoration: none;
+}
+.pular:focus-visible {
+  transform: none;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Estrutura
+   ══════════════════════════════════════════════════════════════════════════ */
+
+#raiz {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.corpo {
+  display: flex;
+  /* **Piso de 55vh, e nao `min-height: 0`.**
+     A barra envolve em varias linhas quando a janela estreita, e sem piso ela
+     comia a tela inteira: medido, 502 px de barra numa janela de 600 px de
+     altura a 320 px de largura com "Texto maior" — nove linhas empilhadas,
+     sobrando 98 px para a simulacao; a 400 px de altura sobrava ZERO e o canvas
+     desaparecia. O programa ficava sem programa nos tamanhos que a propria
+     documentacao promete atender.
+     Ninguem viu porque `layout.test.ts` media `src/interface/layout.ts`, um
+     modulo que o programa nunca importou. */
+  /* **Base ZERO, e nao `auto`.** Com base `auto` a altura de `.corpo` saía do
+     conteudo, e o conteudo e um `<canvas>`, cujo tamanho intrinseco sao os
+     atributos `width`/`height` que o proprio programa escreve depois de medir
+     a caixa. Isso fechava um laco: o canvas media 722, o atributo empurrava
+     `.corpo` para 738, a barra cedia de 97,5 para 82 — e a CENA SUBIA 15,5 px
+     no meio de um gesto. O segundo clique de um duplo clique chegava com `y`
+     15,5 maior sem que o mouse tivesse saido do lugar, contra 4 de folga:
+     nenhum duplo clique na cena funcionava. Com base zero o canvas deixa de
+     opinar sobre o tamanho de quem o contem, e o piso de 55vh continua
+     valendo — ele e um minimo, nao uma base. */
+  flex: 1 1 0;
+  min-height: 55vh;
+}
+
+.barra {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem var(--gutter, 16px);
+  min-height: var(--altura-barra, 3.5rem);
+  background: var(--painel);
+  border-bottom: 1px solid var(--borda);
+  flex-wrap: wrap;
+  /* O outro lado do piso de `.corpo`: a barra cede, e o que nao couber rola
+     DENTRO dela. Cortar seria esconder controle, e esconder controle e o que
+     este projeto nao faz — a regra e que nada fique inalcancavel. */
+  flex: 0 1 auto;
+  max-height: 45vh;
+  overflow-y: auto;
+  /* **Nunca de lado.** `overflow-y: auto` faz o navegador computar `overflow-x`
+     como `auto` também, e era por ali que os controles escapavam: a barra
+     ganhava uma rolagem horizontal e escondia o botão de acelerar o tempo sem
+     que a PÁGINA rolasse — então o teste de refluxo passava verde. Com
+     `visible` o conteúdo tem de caber, e é o `flex-wrap` dos grupos que faz
+     ele caber. */
+  overflow-x: clip;
+  overscroll-behavior: contain;
+}
+/* **Os grupos QUEBRAM, e podem encolher.**
+   Sem `flex-wrap` e sem `min-width: 0`, um grupo nunca fica menor que o
+   próprio conteúdo: a 320 px o grupo de tempo pedia 44 + 44 + 103 + 155 px e a
+   faixa escorria para fora da janela. A página não rolava de lado — a barra
+   tem `overflow-y: auto`, o que faz `overflow-x` computar `auto` —, então o
+   corte não aparecia no teste de refluxo: o que acontecia era a BARRA rolando
+   por dentro, com o botão de acelerar o tempo e a data escondidos atrás de uma
+   rolagem que ninguém procura numa barra de ferramentas. */
+.barra__grupo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+}
+/* A data desceu da lateral para a faixa de tempo. `white-space: nowrap` e o
+   que impede "1 de janeiro de 2026" de quebrar em duas linhas e crescer a
+   barra — e uma barra que muda de altura move a cena inteira, que foi o
+   defeito que `e2e/layout.spec.ts` passou a vigiar. */
+/* A data desceu da lateral para a faixa de tempo. `white-space: nowrap` impede
+   "1 de janeiro de 2026" de quebrar em duas linhas e crescer a barra — e uma
+   barra que muda de altura move a cena inteira, que foi o defeito que
+   `e2e/layout.spec.ts` passou a vigiar. Mas `nowrap` sozinho também a impedia
+   de ENCOLHER, e numa janela estreita ela empurrava o resto para fora: daí o
+   `min-width: 0` com `text-overflow`, que a deixa ceder espaço cortando o
+   próprio texto em vez de cortar o botão do vizinho. */
+.barra__data {
+  margin: 0 0 0 0.35rem;
+  font-size: 0.95rem;
+  color: var(--texto-fraco);
+  white-space: nowrap;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.barra__grupo--direita {
+  margin-left: auto;
+}
+.barra__velocidade {
+  min-width: 11ch;
+  text-align: center;
+  color: var(--texto-fraco);
+  font-size: 0.92rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Controles
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.botao {
+  font: inherit;
+  color: var(--texto);
+  background: var(--painel-alto);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  /* 44px de alvo minimo, que e o criterio 2.5.8 da WCAG 2.2. */
+  min-height: 2.6rem;
+  min-width: 2.6rem;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+.botao:hover:not(:disabled) {
+  border-color: var(--separador);
+}
+.botao:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+.botao--primario {
+  background: var(--acento);
+  color: var(--fundo);
+  border-color: var(--acento);
+  font-weight: 600;
+}
+/* Estado ativo nunca e so cor: ha a barra sublinhada E o aria-pressed. */
+.botao--ativo {
+  box-shadow: inset 0 -3px 0 var(--acento);
+}
+
+/* O trilho, e nao a moldura.
+   A borda externa em `--borda` fazia cada grupo virar um caixote com o mesmo
+   peso visual da cena. O que um segmentado precisa mostrar e ONDE esta a
+   marca, e para isso basta o trilho recuado com a pilula preenchida em cima —
+   a forma carrega a informacao, e a borda nao carregava nenhuma. */
+.segmentado {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  background: var(--grade);
+  border-radius: 10px;
+}
+.segmentado__item {
+  font: inherit;
+  color: var(--texto-fraco);
+  background: transparent;
+  border: 0;
+  border-radius: 8px;
+  min-height: 2.6rem;
+  padding: 0.35rem 0.9rem;
+  cursor: pointer;
+}
+.segmentado__item:hover:not(.segmentado__item--ativo) {
+  color: var(--texto);
+}
+/* Marcado NUNCA e so cor: a pilula preenchida e a barra em `--acento` sao duas
+   formas, e `aria-checked` e a terceira. */
+.segmentado__item--ativo {
+  color: var(--texto);
+  background: var(--painel-alto);
+  box-shadow: inset 0 -3px 0 var(--acento);
+}
+
+.alternador {
+  /* `position: relative` NAO e decoracao: o <input> de verdade e absoluto e
+     invisivel, e sem um ancestral posicionado o bloco que o contem vira o
+     documento inteiro. Focar um deles por teclado mandava o navegador rolar
+     ate a posicao dele no documento. */
+  position: relative;
+  border-radius: 8px;
+}
+/* **O alvo e a LINHA, e nao a caixinha.**
+   `.alternador` nunca teve `min-height`, e a regra de 44 px que `.botao`
+   obedece desde sempre nunca chegou ate aqui: o alvo confortavel era um
+   quadrado de 1,35rem. Agora a linha inteira tem 2,75rem e e ela que responde
+   ao ponteiro — o que tambem resolve o criterio 2.5.8 sem aumentar a caixa,
+   que nao precisa crescer para ser vista. */
+.alternador__linha {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 2.75rem;
+  padding: 0.35rem 0.5rem;
+  margin: 0 -0.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.alternador__linha:hover,
+.alternador:focus-within .alternador__linha {
+  background: var(--painel-alto);
+}
+.alternador input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+/* Em repouso a caixa usa `--grade`, e nao `--separador`.
+   `--separador` (#788cb4) e quase a cor do texto apagado: vinte caixas vazias
+   desenhadas nela eram vinte retangulos claros competindo com a cena, que e
+   exatamente a queixa de "disruptivo entre marcar as opcoes e visualizar". A
+   caixa vazia nao carrega informacao nenhuma — quem carrega e o "✓" —, entao
+   ela pode recuar ate ser so um contorno. */
+.alternador__caixa {
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border: 1px solid var(--grade);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--acento);
+  font-size: 0.95rem;
+  line-height: 1;
+}
+.alternador input:checked + .alternador__caixa {
+  border-color: var(--acento);
+  background: var(--marca-ligada);
+}
+.alternador input:focus-visible + .alternador__caixa {
+  outline: 2px solid var(--foco);
+  outline-offset: 2px;
+}
+.alternador__texto {
+  display: flex;
+  flex-direction: column;
+}
+/* A ajuda e irma do rotulo, e nao filha: ver `controles.tsx`. O recuo alinha
+   com o texto, passando por fora da caixa. */
+.alternador__ajuda {
+  margin: -0.15rem 0 0.35rem;
+  padding-left: calc(1.35rem + 0.6rem);
+  color: var(--texto-fraco);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+.ponto {
+  flex: 0 0 auto;
+  width: 0.7rem;
+  height: 0.7rem;
+  border-radius: 50%;
+}
+
+.recolhivel {
+  border-top: 1px solid var(--borda);
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+}
+.recolhivel__titulo {
+  cursor: pointer;
+  padding: 0.5rem 0;
+  font-weight: 600;
+}
+.recolhivel__secao {
+  margin: 1rem 0 0.25rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-apagado);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Lateral
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.lateral {
+  /* `min(..., 100vw)` NAO e zelo: a 320 px — a largura minima que o criterio
+     1.4.10 da WCAG 2.2 exige — 20rem valem 340 px, e como sobreposicao ancorada
+     a direita o painel comecava em x = −20 px, com a borda esquerda cortada
+     fora da tela. `html { overflow: hidden }` escondia o sintoma: nao havia
+     rolagem horizontal porque a rolagem estava proibida, e o conteudo cortado
+     simplesmente nao existia para quem estivesse naquela largura.
+     Com o limite, a 320 px o painel ocupa a tela inteira, que e o que uma
+     sobreposicao deve fazer quando nao cabe ao lado. */
+  flex: 0 0 min(var(--largura-lateral, 20rem), 100vw);
+  width: min(var(--largura-lateral, 20rem), 100vw);
+  overflow-y: auto;
+  /* A rolagem para aqui, em vez de continuar na pagina quando chega ao fim. */
+  overscroll-behavior: contain;
+  padding: 1rem var(--gutter, 16px) 3rem;
+  background: var(--painel);
+  border-left: 1px solid var(--borda);
+}
+/* ── Os blocos do painel ────────────────────────────────────────────────────
+   Cada bloco responde a UMA pergunta e leva um titulo escrito. O separador
+   entre eles e uma linha em `--borda`, que e declarada decorativa: o que
+   divide os assuntos e o titulo, e nao a linha. */
+.painel__bloco {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--borda);
+}
+.painel__bloco:last-of-type {
+  border-bottom: 0;
+}
+.painel__titulo,
+.lateral__titulo {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--texto-apagado);
+}
+/* Os controles de uma linha repartem o espaco e QUEBRAM quando nao cabem: a
+   320 px o painel ocupa a tela inteira, e dois botoes lado a lado ali ficariam
+   com meia palavra cada. */
+.painel__linha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+.painel__linha > .botao {
+  flex: 1 1 auto;
+}
+.painel__linha > .segmentado {
+  flex: 1 1 auto;
+}
+
+/* As tres gavetas sao UM bloco na tela — uma pilha de titulos fechados — e por
+   isso moram num inviolucro so. Ver `Lateral.tsx`. */
+.lateral__gavetas {
+  margin-top: 0.5rem;
+}
+
+.lateral__cabecalho {
+  margin: 0 0 0.5rem;
+}
+.lateral__luas {
+  margin-top: 0.45rem;
+}
+/* O grupo de tres estados das luas ocupa a largura toda da lateral e reparte
+   igual: assim "Só elas" nao fica menor que "Sem" e a fila nao pula de lugar
+   quando o rotulo ativo muda de largura. */
+.lateral__luas .segmentado {
+  width: 100%;
+}
+.lateral__luas .segmentado__item {
+  flex: 1;
+  padding-inline: 0.4rem;
+  font-size: 0.86rem;
+}
+.lateral__dica {
+  margin: 0.4rem 0 0;
+  color: var(--texto-fraco);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+.lateral__botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+.lateral__vazio {
+  color: var(--texto-fraco);
+  font-size: 0.9rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   A lista de corpos, em dois niveis
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* UMA coluna, e nao duas.
+   A lista era uma grade de duas colunas, que cabia nove corpos em cinco linhas.
+   Com as luas aninhadas embaixo do planeta, duas colunas nao tem como aninhar:
+   o grupo de Jupiter comecaria no meio de uma linha e acabaria no meio de outra,
+   e a indentacao — que e o que diz "estas quatro pertencem a esse" — nao teria
+   para onde apontar. Uma coluna custa altura, e a altura tem rolagem propria
+   logo abaixo. */
+.lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  /* Rolagem propria: sem ela, com um grupo aberto a ficha do corpo escolhido
+     cairia abaixo da dobra exatamente no momento em que se escolhe o corpo —
+     e a lateral rolaria para longe da lista que se esta usando. O teto em
+     `vh` e nao em `rem` de proposito: com "Texto maior" a lista cresce junto
+     com o texto e comeria a ficha inteira. */
+  max-height: 46vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding-right: 0.15rem;
+}
+
+.lista__ramo {
+  display: contents;
+}
+
+.lista__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.5rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  cursor: pointer;
+  /* A borda so aparece quando ela significa algo. Antes todos os itens tinham
+     borda, e com trinta linhas isso vira uma grade de caixas em que o item
+     escolhido nao se destaca: ele tem a mesma borda dos outros, so de outra cor.
+     Sem borda de repouso, quem tem borda tem um papel. */
+  transition: background 120ms ease, border-color 120ms ease;
+}
+:root[data-reduzir-animacao='sim'] .lista__item {
+  transition: none;
+}
+.lista__item:hover {
+  background: var(--painel-alto);
+}
+
+/* O item escolhido: fundo, barra a esquerda E a letra "A" desenhada. Tres
+   sinais para a mesma informacao, porque nenhum deles pode ser so a cor. */
+.lista__item--a {
+  background: var(--painel-alto);
+  border-color: var(--acento);
+}
+.lista__item--a::before {
+  content: '';
+  position: absolute;
+  left: -1px;
+  top: 0.35rem;
+  bottom: 0.35rem;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--acento);
+}
+.lista__item--b {
+  border-style: dashed;
+  border-color: var(--separador);
+}
+/* O acompanhado ganha o anel tracejado, o mesmo desenho que ele tem na cena.
+   Repetir a forma nos dois lugares e o que liga a linha da lista ao corpo
+   desenhado sem depender de a pessoa reparar na cor. */
+.lista__item--acompanhado {
+  outline: 1px dashed var(--separador);
+  outline-offset: 1px;
+}
+
+.lista__nome {
+  flex: 1;
+  font-size: 0.92rem;
+  /* Nome longo nao empurra as marcas para fora da linha. */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lista__marca {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--texto-apagado);
+  flex: none;
+}
+.lista__marca--anel {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+/* O grupo de luas: recuo mais uma linha vertical que liga as filhas ao pai.
+   A linha e `--grade`, que e grafico e nao texto, e ela e redundante: o rotulo
+   acessivel de cada lua ja diz "lua", e o grupo tem `aria-label` escrito com a
+   contagem. Quem nao enxerga a linha nao perde nada. */
+.lista__grupo {
+  margin: 0.1rem 0 0.25rem 0.85rem;
+  padding-left: 0.7rem;
+  border-left: 1px solid var(--grade);
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.lista__item--lua {
+  min-height: 2.2rem;
+  padding-block: 0.15rem;
+}
+.lista__item--lua .lista__nome {
+  font-size: 0.86rem;
+  color: var(--texto-fraco);
+}
+/* O nome da lua escolhida volta a cor cheia: ele passou a ser o assunto. */
+.lista__item--lua.lista__item--a .lista__nome {
+  color: var(--texto);
+}
+.lista__item--lua .ponto {
+  width: 0.5rem;
+  height: 0.5rem;
+  margin-left: 0.1rem;
+}
+
+/* A contagem de luas na linha do planeta. `aria-hidden`, porque o rotulo
+   acessivel do item ja a diz por extenso — repetir daria "Júpiter, 4 luas,
+   4 luas". */
+.lista__contagem {
+  flex: none;
+  font-size: 0.74rem;
+  color: var(--texto-fraco);
+  padding: 0.05rem 0.4rem;
+  border: 1px solid var(--grade);
+  border-radius: 999px;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   A ficha, na lateral
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.ficha {
+  margin-top: 0.9rem;
+  padding: 0.8rem;
+  background: var(--painel-alto);
+  border-radius: 10px;
+}
+.ficha__nome {
+  margin: 0 0 0.15rem;
+  font-size: 1.1rem;
+}
+.ficha__frase {
+  margin: 0 0 0.6rem;
+  color: var(--texto-fraco);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+.ficha__dados {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.2rem 1rem;
+  margin: 0;
+  font-size: 0.9rem;
+}
+.ficha__dados dt {
+  color: var(--texto-fraco);
+}
+.ficha__dados dd {
+  margin: 0;
+  text-align: right;
+}
+
+/* A ficha inteira, que era um modal.
+   O separador de cima e o que diz "daqui para baixo e o que a caixa mostrava":
+   sem ele os sete blocos parecem continuacao das tres linhas de medida, e as
+   tres linhas de medida sao as que mudam enquanto o tempo corre. */
+.ficha__inteira {
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--borda);
+}
+.ficha__secao,
+.ficha__inteira h3 {
+  margin: 1rem 0 0.35rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--texto-apagado);
+}
+.ficha__secao {
+  margin: 0.9rem 0 0.2rem;
+}
+.ficha__inteira h3:first-child {
+  margin-top: 0;
+}
+.ficha__inteira p {
+  margin: 0.35rem 0;
+  font-size: 0.86rem;
+  line-height: 1.55;
+}
+.ficha--inteira {
+  /* Com a ficha aberta ela e o assunto da lateral, e a lista cede altura. */
+  margin-bottom: 1rem;
+}
+.lateral:has(.ficha--inteira) .lista {
+  max-height: 22vh;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Visor
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.visor {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+.visor__canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+/* A faixa de avisos do topo: uma coluna, centrada, com os três avisos em
+   fluxo normal dentro dela. Ver `Visor.tsx`. */
+.visor__avisosDoTopo {
+  position: absolute;
+  top: 0.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  /* Nada aqui rouba clique da cena: os avisos são leitura, e o único botão
+     dentro deles — "Voltar ao Sistema Solar" — reacende o ponteiro sozinho. */
+  pointer-events: none;
+  max-width: min(90%, 44rem);
+}
+.visor__avisosDoTopo .botao {
+  pointer-events: auto;
+}
+
+.visor__leitura {
+  position: absolute;
+  left: var(--gutter, 16px);
+  bottom: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: var(--texto-fraco);
+  font-size: 0.82rem;
+  pointer-events: none;
+}
+.visor__etiqueta {
+  color: var(--aviso);
+}
+
+/* O passo curto: mesma faixa do distintivo de sistema modificado, logo abaixo
+   dele. Os dois sao estados do programa, e nao leituras da cena. */
+.visor__passo {
+  margin: 0;
+  max-width: 34rem;
+  padding: 0.3rem 0.8rem;
+  text-align: center;
+  color: var(--aviso);
+  font-size: 0.82rem;
+  background: color-mix(in srgb, var(--sobreposicao) 82%, transparent);
+  border: 1px solid var(--borda);
+  border-radius: 999px;
+  pointer-events: none;
+}
+
+/* O painel tecnico fica no canto de cima, a esquerda: e o unico lugar do
+   visor sem botao nem rotulo de corpo, e assim ele nao disputa espaco com a
+   regua de escala do rodape. `pointer-events: none` porque ele e leitura pura
+   — deixar um <dl> capturar clique tiraria o arrasto da camera de uma faixa
+   inteira da tela sem nada em troca. */
+.tecnico {
+  position: absolute;
+  top: 0.75rem;
+  left: var(--gutter, 16px);
+  margin: 0;
+  padding: 0.5rem 0.7rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 0.15rem 0.8rem;
+  background: rgb(10 12 20 / 0.72);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+.tecnico > div {
+  display: contents;
+}
+.tecnico dt {
+  color: var(--texto-fraco);
+}
+.tecnico dd {
+  margin: 0;
+  text-align: right;
+  color: var(--texto);
+}
+.visor__alerta {
+  margin: 0;
+  padding: 0.4rem 0.8rem;
+  background: var(--painel-alto);
+  color: var(--aviso);
+  border-radius: 8px;
+  font-size: 0.88rem;
+}
+.avisos {
+  position: absolute;
+  right: var(--gutter, 16px);
+  top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  max-width: 24rem;
+}
+.avisos__item {
+  margin: 0;
+  padding: 0.45rem 0.7rem;
+  background: var(--painel-alto);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  font-size: 0.88rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Modal
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.modal {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  max-width: min(42rem, 92vw);
+  max-height: 86vh;
+  color: var(--texto);
+}
+.modal::backdrop {
+  background: rgb(6 8 14 / 0.72);
+}
+.modal__cartao {
+  display: flex;
+  flex-direction: column;
+  max-height: 86vh;
+  background: var(--painel);
+  border: 1px solid var(--borda);
+  border-radius: 14px;
+  padding: 1.2rem;
+}
+.modal__titulo {
+  margin: 0 0 0.6rem;
+  font-size: 1.3rem;
+}
+.modal__corpo {
+  overflow-y: auto;
+  padding-right: 0.3rem;
+}
+.modal__acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.nota {
+  color: var(--texto-fraco);
+  font-size: 0.9rem;
+}
+.tabela {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.tabela th,
+.tabela td {
+  text-align: left;
+  padding: 0.35rem 0.5rem;
+  border-bottom: 1px solid var(--borda);
+}
+.tabela td {
+  text-align: right;
+  color: var(--texto-fraco);
+}
+.tabela thead th {
+  color: var(--texto-apagado);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* A primeira coluna e `<th scope="row">`: e o nome da linha, nao um dado.
+   Mantê-la alinhada a esquerda e com o peso do cabecalho e o que permite ler a
+   tabela por linha sem depender de cor. */
+.tabela tbody th {
+  font-weight: 500;
+  color: var(--texto);
+}
+
+/* O modal e prosa: sem espaco entre paragrafos, os blocos de honestidade
+   viram um bloco unico e o motivo de estarem separados se perde. */
+.modal__corpo h3 {
+  margin: 1.3rem 0 0.4rem;
+  font-size: 1.02rem;
+}
+.modal__corpo > :first-child,
+.modal__corpo section:first-of-type h3 {
+  margin-top: 0;
+}
+.modal__corpo p {
+  margin: 0 0 0.7rem;
+  line-height: 1.55;
+}
+.modal__corpo .tabela,
+.modal__corpo .ficha__dados {
+  margin-bottom: 0.9rem;
+}
+
+/* De onde vem cada dado. `<dl>` e nao lista: e termo e definicao. */
+.fontes {
+  margin: 0;
+  font-size: 0.9rem;
+}
+.fontes > div + div {
+  margin-top: 0.6rem;
+}
+.fontes dt {
+  font-weight: 500;
+}
+.fontes dd {
+  margin: 0.1rem 0 0;
+  color: var(--texto-fraco);
+}
+
+/* A procedencia de cada mapa de textura. O `<b>` carrega o papel do mapa —
+   albedo, nuvens, anel — e o resto diz se aquilo e fotografia ou desenho. */
+.procedencia {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 0.9rem;
+  color: var(--texto-fraco);
+}
+.procedencia li + li {
+  margin-top: 0.3rem;
+}
+.procedencia b {
+  color: var(--texto);
+  font-weight: 500;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Responsivo — abaixo do ponto de quebra a lateral SOBREPOE, nao some
+   ══════════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 999px) {
+  .lateral {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+    box-shadow: -8px 0 24px rgb(0 0 0 / 0.5);
+  }
+  .corpo {
+    position: relative;
+  }
+}
+
+/* WCAG 2.2, criterio 1.4.10 (Reflow): tem de funcionar a 320 px sem rolagem
+   horizontal. A lista de dois em dois vira uma coluna so. */
+@media (max-width: 420px) {
+  .lista {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* O alternavel "Reduzir animação" faz o mesmo que a preferencia do sistema,
+   para quem quer so neste programa. */
+:root[data-reduzir-animacao='sim'] *,
+:root[data-reduzir-animacao='sim'] *::before {
+  animation-duration: 0.01ms !important;
+  transition-duration: 0.01ms !important;
+}
+
+.seletor-ab {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+.seletor-ab__lado h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+}
+.seletor-ab__botoes {
+  display: flex;
+  gap: 0.4rem;
+}
+.dicas {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Rótulos sobre a cena
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.rotulos {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.rotulos__placa,
+.rotulos__ponto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+
+/* A placa é opaca a 0,80 — medido: com a cena mais clara possível atrás
+   (o Sol centrado, com bloom no máximo) o texto ainda dá 8,85:1. O mínimo
+   real é 0,63; a folga é por robustez, não por necessidade. */
+.rotulos__placa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.12rem 0.4rem;
+  background: rgb(12 14 22 / 0.8);
+  border-radius: 5px;
+  color: var(--texto);
+  font-size: 0.82rem;
+  line-height: 1.25;
+  white-space: nowrap;
+}
+
+/* Atrás de um corpo: contorno TRACEJADO, e nunca opacidade reduzida —
+   baixar a opacidade destruiria o contraste garantido. */
+.rotulos__placa--atras {
+  border: 1px dashed var(--borda);
+  padding: calc(0.12rem - 1px) calc(0.4rem - 1px);
+}
+
+.rotulos__barra {
+  width: 2px;
+  height: 0.8em;
+  border-radius: 1px;
+}
+
+.rotulos__ponto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Laboratorio de Fourier
+
+   Lamina ao lado da cena PAUSADA, e nao tela cheia: metade do que o
+   laboratorio mostra — a orbita osculadora no plano orbital real — esta la
+   fora, na cena. Ele substitui a lateral em vez de somar-se a ela; as duas
+   juntas deixariam a cena com menos de metade da largura.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.lab {
+  flex: 0 0 min(28rem, 42vw);
+  overflow-y: auto;
+  padding: 0.9rem 1rem 1.4rem;
+  background: var(--painel);
+  border-left: 1px solid var(--borda);
+}
+.lab__cabecalho {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem;
+}
+.lab__cabecalho h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+/* O aviso fica ANTES do grafico, e nao no rodape: quem le de cima para baixo
+   encontra "nao e a fisica do modelo" antes de ver os epiciclos girando, que
+   e a unica ordem em que ele cumpre a funcao. */
+.lab__aviso {
+  margin: 0.7rem 0 0.9rem;
+  padding: 0.55rem 0.7rem;
+  border-left: 3px solid var(--aviso);
+  background: rgb(255 196 92 / 0.08);
+  color: var(--texto-fraco);
+  font-size: 0.85rem;
+}
+
+.lab__grafico {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  background: var(--sobreposicao);
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+}
+
+.lab__controles {
+  margin: 0.9rem 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.lab__campo {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.88rem;
+}
+.lab__campo input[type='range'] {
+  width: 100%;
+  accent-color: var(--acento);
+}
+.lab__botoes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Abaixo do ponto de quebra a lamina toma a largura toda: espremer um grafico
+   num terco de 640 px nao mostraria o desvio, que e o que ele existe para
+   mostrar. */
+@media (max-width: 900px) {
+  .lab {
+    flex: 1 1 100%;
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Sandbox
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.criar {
+  margin-bottom: 1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--borda);
+}
+.criar__tipos {
+  display: grid;
+  gap: 0.3rem;
+  margin-bottom: 0.9rem;
+}
+/* Cada tipo é um botão com NOME E DESCRIÇÃO escritos. Uma fila de ícones
+   exigiria conhecer a convenção; "Gigante gasoso — do tamanho de Júpiter" não
+   exige nada. */
+.criar__tipo {
+  display: grid;
+  gap: 0.1rem;
+  text-align: left;
+  padding: 0.45rem 0.6rem;
+  background: var(--painel-alto);
+  color: var(--texto);
+  border: 1px solid var(--borda);
+  border-radius: 8px;
+  font: inherit;
+  cursor: pointer;
+}
+.criar__tipo--ativo {
+  border-color: var(--acento);
+  /* A barra à esquerda é forma, e não só cor: quem não distingue o azul
+     continua vendo qual está escolhido. */
+  box-shadow: inset 3px 0 0 var(--acento);
+}
+.criar__nome {
+  font-weight: 500;
+}
+.criar__descricao {
+  color: var(--texto-fraco);
+  font-size: 0.82rem;
+  line-height: 1.35;
+}
+.criar__mira {
+  margin: 0 0 0.9rem;
+  color: var(--acento);
+  font-size: 0.9rem;
+}
+.criar__campo {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+}
+.criar__campo input[type='range'] {
+  width: 100%;
+  accent-color: var(--acento);
+}
+.criar__marcas {
+  display: flex;
+  justify-content: space-between;
+  color: var(--texto-apagado);
+  font-size: 0.74rem;
+}
+.criar__lista {
+  list-style: none;
+  margin: 0 0 0.6rem;
+  padding: 0;
+  font-size: 0.9rem;
+}
+.criar__lista li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+}
+
+/* No ALTO da cena, e não no rodapé.
+   Em baixo ele disputava espaço com os três botões da cena: sobrepunha-os o
+   bastante para o navegador recusar o clique no próprio botão de voltar — um
+   aviso com saída, e a saída inalcançável. */
+.visor__modificado {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  max-width: calc(100% - 2rem);
+  padding: 0.4rem 0.5rem 0.4rem 0.8rem;
+  background: rgb(10 12 20 / 0.86);
+  border: 1px solid var(--aviso);
+  border-radius: 10px;
+  color: var(--aviso);
+  font-size: 0.88rem;
+}
+
+/* A recusa fica ao lado do botão que a provocou, e carrega a saída junto.
+   Âmbar e com borda: ela não é um erro do programa, é um limite do cálculo, e
+   a diferença aparece na cor. */
+.criar__recusa {
+  margin: 0.6rem 0;
+  padding: 0.6rem 0.7rem;
+  background: rgb(255 196 92 / 0.08);
+  border: 1px solid var(--aviso);
+  border-radius: 8px;
+  font-size: 0.88rem;
+}
+.criar__recusa p {
+  margin: 0 0 0.5rem;
+  color: var(--texto);
+  line-height: 1.5;
+}
+
+/* O anel do corpo acompanhado, e os distintivos A e B.
+   TRACEJADO, e não de outra cor: sobre uma cena que vai do preto ao branco um
+   contorno que só muda de cor some na metade dos fundos. O tracejado sobrevive
+   aos dois, e é a mesma disciplina do "✓" desenhado no alternador. */
+.rotulos__anel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 2px dashed var(--acento);
+  border-radius: 50%;
+  opacity: 0.9;
+  will-change: transform;
+}
+.rotulos__marca {
+  margin-left: 0.3rem;
+  padding: 0 0.22rem;
+  border-radius: 3px;
+  background: var(--texto);
+  color: var(--sobreposicao);
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1.5;
+}
+/* O distintivo do acompanhado é o mesmo anel em miniatura, e não uma letra:
+   "A" e "B" são escolhas, e acompanhar é outra coisa. */
+.rotulos__marca--acompanhado {
+  background: none;
+  color: var(--acento);
+  font-size: 0.86rem;
+  padding: 0;
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Modo imersivo
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* A cena ja ocupa `flex: 1`; sem barra e sem lateral ela fica com a janela
+   inteira sem nenhuma regra nova. O que esta classe faz e dar ao visor um
+   contorno de onde pousar a tira. */
+.corpo--imersivo {
+  position: relative;
+}
+
+/* Os avisos descem para baixo do botao de sair.
+   Os dois moram no canto de cima a direita, e no modo imersivo colidiam — a
+   primeira coisa que se ve ao entrar e um aviso, quando o navegador recusa a
+   tela cheia, e ele caía exatamente sobre a unica saida escrita do modo. */
+.corpo--imersivo .avisos {
+  top: 4.4rem;
+}
+
+/* O rodape normal do visor recolhe, porque a tira do modo o SUBSTITUI. Sem
+   isto os dois desenhavam um sobre o outro no mesmo canto: as etiquetas de
+   licenca por cima da regua de escala, ilegiveis as duas, e os tres botoes do
+   visor atras da tira de teclas.
+   Nada se perde em silencio: as licencas estao na tira, com o mesmo texto, e
+   os tres botoes voltam ao sair do modo — que a tira ensina como fazer. */
+.corpo--imersivo .visor__leitura {
+  display: none;
+}
+
+.imersivo {
+  position: absolute;
+  inset: 0;
+  /* A camada e furada: o arrasto da camera precisa atravessar tudo que nao seja
+     controle. Cada peca de dentro reativa o ponteiro por conta propria. */
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.imersivo__saida {
+  align-self: flex-end;
+  margin: 0.75rem var(--gutter, 16px) 0;
+  pointer-events: auto;
+}
+
+.imersivo__tira {
+  align-self: center;
+  margin-bottom: 3.2rem;
+  max-width: 44rem;
+  padding: 0.55rem 1rem;
+  text-align: center;
+  /* `--sobreposicao` com alfa: a tira precisa ser legivel sobre um planeta
+     iluminado E sobre o vazio preto. `color-mix` mantem o token como fonte da
+     cor, em vez de espalhar um sexto valor hexadecimal pelo arquivo. */
+  background: color-mix(in srgb, var(--sobreposicao) 82%, transparent);
+  border: 1px solid var(--borda);
+  border-radius: 12px;
+  pointer-events: auto;
+}
+.imersivo__teclas {
+  margin: 0;
+  font-size: 0.84rem;
+  color: var(--texto-fraco);
+}
+.imersivo__velocidade {
+  margin: 0.25rem 0 0;
+  font-size: 0.82rem;
+  color: var(--texto-apagado);
+}
+.imersivo kbd {
+  display: inline-block;
+  min-width: 1.6em;
+  padding: 0.05em 0.35em;
+  font: inherit;
+  font-size: 0.92em;
+  text-align: center;
+  color: var(--texto);
+  background: var(--painel-alto);
+  border: 1px solid var(--borda);
+  border-radius: 5px;
+}
+
+.imersivo__licencas {
+  position: absolute;
+  left: var(--gutter, 16px);
+  bottom: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  font-size: 0.82rem;
+}

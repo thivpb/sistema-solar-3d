@@ -1,0 +1,522 @@
+{
+  "_leia_isto": "Gerado por ferramentas/conferir_luas.mjs. Nao edite a mao.",
+  "fonte": {
+    "fonte": "JPL Horizons API (ssd.jpl.nasa.gov/api/horizons.api), vetores geometricos do satelite relativos ao planeta",
+    "url": "https://ssd.jpl.nasa.gov/api/horizons.api",
+    "nota": "Este arquivo nao traz dado medido de fora: ele traz a DIFERENCA entre a posicao que src/dados/luas.json produz e a que o Horizons devolve, amostrada de 13 em 13 dias na janela retida. A fonte e o lado do Horizons da subtracao."
+  },
+  "janela": {
+    "de": "2020-01-01 12:00",
+    "ate": "2040-01-01 12:00",
+    "passo": "13 dias",
+    "retida": true
+  },
+  "metodo": "Tudo do modelo foi medido em 2000-2016. Esta janela comeca em 2020 e o gerador nunca a olhou, entao o erro aqui e o erro do modelo e nao o do ajuste.",
+  "pior": {
+    "chave": "tritao",
+    "erroMaximoKm": 52636
+  },
+  "maiorCrescimento": {
+    "chave": "deimos",
+    "razao": 1.63
+  },
+  "luas": [
+    {
+      "chave": "lua",
+      "aKm": 384400,
+      "erroMaximoKm": 15293,
+      "erroRmsKm": 7655,
+      "fracaoDoSemieixo": 0.0398,
+      "primeiraMetadeMaximoKm": 15054,
+      "segundaMetadeMaximoKm": 15293,
+      "cresce": 1.02
+    },
+    {
+      "chave": "fobos",
+      "aKm": 9375,
+      "erroMaximoKm": 822,
+      "erroRmsKm": 375,
+      "fracaoDoSemieixo": 0.0877,
+      "primeiraMetadeMaximoKm": 614,
+      "segundaMetadeMaximoKm": 822,
+      "cresce": 1.34
+    },
+    {
+      "chave": "deimos",
+      "aKm": 23457,
+      "erroMaximoKm": 456,
+      "erroRmsKm": 279,
+      "fracaoDoSemieixo": 0.0194,
+      "primeiraMetadeMaximoKm": 279,
+      "segundaMetadeMaximoKm": 456,
+      "cresce": 1.63
+    },
+    {
+      "chave": "io",
+      "aKm": 421800,
+      "erroMaximoKm": 7699,
+      "erroRmsKm": 3943,
+      "fracaoDoSemieixo": 0.0183,
+      "primeiraMetadeMaximoKm": 7694,
+      "segundaMetadeMaximoKm": 7699,
+      "cresce": 1
+    },
+    {
+      "chave": "europa",
+      "aKm": 671100,
+      "erroMaximoKm": 25702,
+      "erroRmsKm": 13725,
+      "fracaoDoSemieixo": 0.0383,
+      "primeiraMetadeMaximoKm": 25332,
+      "segundaMetadeMaximoKm": 25702,
+      "cresce": 1.01
+    },
+    {
+      "chave": "ganimedes",
+      "aKm": 1070400,
+      "erroMaximoKm": 4295,
+      "erroRmsKm": 2265,
+      "fracaoDoSemieixo": 0.004,
+      "primeiraMetadeMaximoKm": 3999,
+      "segundaMetadeMaximoKm": 4295,
+      "cresce": 1.07
+    },
+    {
+      "chave": "calisto",
+      "aKm": 1882700,
+      "erroMaximoKm": 3587,
+      "erroRmsKm": 2546,
+      "fracaoDoSemieixo": 0.0019,
+      "primeiraMetadeMaximoKm": 3501,
+      "segundaMetadeMaximoKm": 3587,
+      "cresce": 1.02
+    },
+    {
+      "chave": "encelado",
+      "aKm": 238400,
+      "erroMaximoKm": 5710,
+      "erroRmsKm": 2679,
+      "fracaoDoSemieixo": 0.0239,
+      "primeiraMetadeMaximoKm": 4599,
+      "segundaMetadeMaximoKm": 5710,
+      "cresce": 1.24
+    },
+    {
+      "chave": "tita",
+      "aKm": 1221900,
+      "erroMaximoKm": 37329,
+      "erroRmsKm": 21211,
+      "fracaoDoSemieixo": 0.0305,
+      "primeiraMetadeMaximoKm": 37329,
+      "segundaMetadeMaximoKm": 25484,
+      "cresce": 0.68
+    },
+    {
+      "chave": "titania",
+      "aKm": 436298,
+      "erroMaximoKm": 2088,
+      "erroRmsKm": 977,
+      "fracaoDoSemieixo": 0.0048,
+      "primeiraMetadeMaximoKm": 1817,
+      "segundaMetadeMaximoKm": 2088,
+      "cresce": 1.15
+    },
+    {
+      "chave": "oberon",
+      "aKm": 583511,
+      "erroMaximoKm": 2476,
+      "erroRmsKm": 1372,
+      "fracaoDoSemieixo": 0.0042,
+      "primeiraMetadeMaximoKm": 2476,
+      "segundaMetadeMaximoKm": 2408,
+      "cresce": 0.97
+    },
+    {
+      "chave": "miranda",
+      "aKm": 129846,
+      "erroMaximoKm": 9423,
+      "erroRmsKm": 5789,
+      "fracaoDoSemieixo": 0.0726,
+      "primeiraMetadeMaximoKm": 6880,
+      "segundaMetadeMaximoKm": 9423,
+      "cresce": 1.37
+    },
+    {
+      "chave": "tritao",
+      "aKm": 354800,
+      "erroMaximoKm": 52636,
+      "erroRmsKm": 29194,
+      "fracaoDoSemieixo": 0.1484,
+      "primeiraMetadeMaximoKm": 40311,
+      "segundaMetadeMaximoKm": 52636,
+      "cresce": 1.31
+    }
+  ],
+  "amarras": [
+    {
+      "chave": "lua",
+      "dias": 0,
+      "xKm": -292453.88005834294,
+      "yKm": -270671.9198605716,
+      "zKm": 35659.87330800157
+    },
+    {
+      "chave": "lua",
+      "dias": 1234.5,
+      "xKm": 130979.41432118,
+      "yKm": -351515.1664889092,
+      "zKm": -26241.159922830724
+    },
+    {
+      "chave": "lua",
+      "dias": 9496.5,
+      "xKm": 133861.89090081846,
+      "yKm": 336126.97108811524,
+      "zKm": 32608.49181557598
+    },
+    {
+      "chave": "lua",
+      "dias": 14610,
+      "xKm": -207617.39526006166,
+      "yKm": 343481.0322308321,
+      "zKm": 27871.347179207092
+    },
+    {
+      "chave": "fobos",
+      "dias": 0,
+      "xKm": -1980.2175684005542,
+      "yKm": -9288.356961005195,
+      "zKm": 561.3731134903028
+    },
+    {
+      "chave": "fobos",
+      "dias": 1234.5,
+      "xKm": -2267.026271062116,
+      "yKm": -8957.63244421263,
+      "zKm": 470.35831672131735
+    },
+    {
+      "chave": "fobos",
+      "dias": 9496.5,
+      "xKm": -2534.3287381977134,
+      "yKm": -8927.422064553031,
+      "zKm": 810.67378438594
+    },
+    {
+      "chave": "fobos",
+      "dias": 14610,
+      "xKm": 8233.47352349452,
+      "yKm": -296.99189886662816,
+      "zKm": -4321.964986760342
+    },
+    {
+      "chave": "deimos",
+      "dias": 0,
+      "xKm": 10377.443085522402,
+      "yKm": -19988.694046526478,
+      "zKm": -6556.800616238107
+    },
+    {
+      "chave": "deimos",
+      "dias": 1234.5,
+      "xKm": -6451.380410734474,
+      "yKm": -22485.980369111167,
+      "zKm": 1729.516301148592
+    },
+    {
+      "chave": "deimos",
+      "dias": 9496.5,
+      "xKm": 10747.05888331133,
+      "yKm": 20589.088931876697,
+      "zKm": -3289.527521379293
+    },
+    {
+      "chave": "deimos",
+      "dias": 14610,
+      "xKm": -11709.10224889614,
+      "yKm": -19723.930090242564,
+      "zKm": 4908.600138544538
+    },
+    {
+      "chave": "io",
+      "dias": 0,
+      "xKm": 399575.69828776823,
+      "yKm": 130027.18029186316,
+      "zKm": 10358.419942207045
+    },
+    {
+      "chave": "io",
+      "dias": 1234.5,
+      "xKm": 246445.15431481673,
+      "yKm": -341340.49467168044,
+      "zKm": -8688.693853460136
+    },
+    {
+      "chave": "io",
+      "dias": 9496.5,
+      "xKm": 371492.2609723225,
+      "yKm": -200520.01651894732,
+      "zKm": -1865.658373726721
+    },
+    {
+      "chave": "io",
+      "dias": 14610,
+      "xKm": -160491.1706470898,
+      "yKm": 389047.33673440176,
+      "zKm": 11622.84855172169
+    },
+    {
+      "chave": "europa",
+      "dias": 0,
+      "xKm": -561543.514517013,
+      "yKm": -356257.51830028463,
+      "zKm": -17846.867004295782
+    },
+    {
+      "chave": "europa",
+      "dias": 1234.5,
+      "xKm": 107575.26611672886,
+      "yKm": 663225.6054119813,
+      "zKm": 20114.429471520067
+    },
+    {
+      "chave": "europa",
+      "dias": 9496.5,
+      "xKm": 100552.45740488033,
+      "yKm": -666893.3709122657,
+      "zKm": -18163.894925906614
+    },
+    {
+      "chave": "europa",
+      "dias": 14610,
+      "xKm": -158154.18057294376,
+      "yKm": -653111.049795988,
+      "zKm": -26730.07805811055
+    },
+    {
+      "chave": "ganimedes",
+      "dias": 0,
+      "xKm": -819747.8594296462,
+      "yKm": -686139.2400000509,
+      "zKm": -33323.0630388445
+    },
+    {
+      "chave": "ganimedes",
+      "dias": 1234.5,
+      "xKm": 580889.6134728648,
+      "yKm": 899356.1276208371,
+      "zKm": 39041.243167244655
+    },
+    {
+      "chave": "ganimedes",
+      "dias": 9496.5,
+      "xKm": 1012346.555015396,
+      "yKm": -344553.58012052026,
+      "zKm": 1416.2159834406048
+    },
+    {
+      "chave": "ganimedes",
+      "dias": 14610,
+      "xKm": -532571.2226926202,
+      "yKm": -928182.0545269588,
+      "zKm": -42340.08381085395
+    },
+    {
+      "chave": "calisto",
+      "dias": 0,
+      "xKm": 326601.5018167,
+      "yKm": 1852440.1725914064,
+      "zKm": 67234.70554136974
+    },
+    {
+      "chave": "calisto",
+      "dias": 1234.5,
+      "xKm": 658971.4301758112,
+      "yKm": 1758656.126678199,
+      "zKm": 68450.1759175621
+    },
+    {
+      "chave": "calisto",
+      "dias": 9496.5,
+      "xKm": 9879.81388172545,
+      "yKm": 1879409.6154544204,
+      "zKm": 61373.80058093881
+    },
+    {
+      "chave": "calisto",
+      "dias": 14610,
+      "xKm": -1161823.0224262553,
+      "yKm": -1493957.029578275,
+      "zKm": -64695.346204897854
+    },
+    {
+      "chave": "encelado",
+      "dias": 0,
+      "xKm": 163844.58966442247,
+      "yKm": -158752.62899336626,
+      "zKm": 67313.84751333849
+    },
+    {
+      "chave": "encelado",
+      "dias": 1234.5,
+      "xKm": 101997.40714842401,
+      "yKm": -193602.97786275035,
+      "zKm": 91620.19037540206
+    },
+    {
+      "chave": "encelado",
+      "dias": 9496.5,
+      "xKm": -235314.7406867994,
+      "yKm": -11899.843464313079,
+      "zKm": 29166.62688553125
+    },
+    {
+      "chave": "encelado",
+      "dias": 14610,
+      "xKm": -194478.9340135465,
+      "yKm": 127146.95791289622,
+      "zKm": -47750.302182834595
+    },
+    {
+      "chave": "tita",
+      "dias": 0,
+      "xKm": -903770.1220741374,
+      "yKm": 800390.5199802363,
+      "zKm": -329192.41082720115
+    },
+    {
+      "chave": "tita",
+      "dias": 1234.5,
+      "xKm": 396871.520754741,
+      "yKm": -1008294.1362467243,
+      "zKm": 483263.6766115241
+    },
+    {
+      "chave": "tita",
+      "dias": 9496.5,
+      "xKm": 1122985.0673094974,
+      "yKm": -376676.8967463852,
+      "zKm": 91465.15422410303
+    },
+    {
+      "chave": "tita",
+      "dias": 14610,
+      "xKm": -873245.3226506957,
+      "yKm": -747361.1042673908,
+      "zKm": 463551.5656557372
+    },
+    {
+      "chave": "titania",
+      "dias": 0,
+      "xKm": -62686.783443430286,
+      "yKm": -46557.37995602847,
+      "zKm": -428924.39659816393
+    },
+    {
+      "chave": "titania",
+      "dias": 1234.5,
+      "xKm": 380762.15009861125,
+      "yKm": -108540.06768845205,
+      "zKm": -181216.18525287503
+    },
+    {
+      "chave": "titania",
+      "dias": 9496.5,
+      "xKm": 361578.7111167863,
+      "yKm": -109270.13279315548,
+      "zKm": -216708.07187602768
+    },
+    {
+      "chave": "titania",
+      "dias": 14610,
+      "xKm": -407075.96083925816,
+      "yKm": 68893.80254264107,
+      "zKm": -141473.11106196628
+    },
+    {
+      "chave": "oberon",
+      "dias": 0,
+      "xKm": -561565.355494558,
+      "yKm": 104802.53823926295,
+      "zKm": -123466.28980358205
+    },
+    {
+      "chave": "oberon",
+      "dias": 1234.5,
+      "xKm": 291248.7508376295,
+      "yKm": -131256.90781129064,
+      "zKm": -487113.1114292132
+    },
+    {
+      "chave": "oberon",
+      "dias": 9496.5,
+      "xKm": 289138.5236569821,
+      "yKm": 8084.427712878678,
+      "zKm": 506902.59230900055
+    },
+    {
+      "chave": "oberon",
+      "dias": 14610,
+      "xKm": -344231.75029843487,
+      "yKm": 138942.43501369742,
+      "zKm": 451687.715732521
+    },
+    {
+      "chave": "miranda",
+      "dias": 0,
+      "xKm": -104933.58659833891,
+      "yKm": 4839.356195380424,
+      "zKm": -76258.24931209702
+    },
+    {
+      "chave": "miranda",
+      "dias": 1234.5,
+      "xKm": 25369.69969874099,
+      "yKm": 21647.342823884082,
+      "zKm": 125593.88507852145
+    },
+    {
+      "chave": "miranda",
+      "dias": 9496.5,
+      "xKm": 115050.909194527,
+      "yKm": -24946.910525687075,
+      "zKm": 54853.64568512168
+    },
+    {
+      "chave": "miranda",
+      "dias": 14610,
+      "xKm": -97645.85860095973,
+      "yKm": 37353.450908583734,
+      "zKm": 76914.51514443221
+    },
+    {
+      "chave": "tritao",
+      "dias": 0,
+      "xKm": -205285.37148635747,
+      "yKm": 123485.82015502166,
+      "zKm": 261710.16119812746
+    },
+    {
+      "chave": "tritao",
+      "dias": 1234.5,
+      "xKm": -98634.46728596046,
+      "yKm": 208843.39232732356,
+      "zKm": 269330.1307771383
+    },
+    {
+      "chave": "tritao",
+      "dias": 9496.5,
+      "xKm": -271347.03050536674,
+      "yKm": -42844.715045040924,
+      "zKm": 224539.88382607838
+    },
+    {
+      "chave": "tritao",
+      "dias": 14610,
+      "xKm": -159086.93418305722,
+      "yKm": 164057.14826348546,
+      "zKm": 271403.0940794309
+    }
+  ],
+  "gerado_em": "2026-09-29"
+}

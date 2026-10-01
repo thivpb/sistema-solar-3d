@@ -1,0 +1,17 @@
+node_modules/
+preferencias.json
+.servidor*.trava
+saida/
+test-results/
+.vitest/
+playwright-report/
+*.log
+.DS_Store
+
+# dist/ fica de fora do controle de versao aqui, mas VAI JUNTO na pasta de entrega:
+# sem ele, "nao e preciso usar o terminal" passaria a exigir `npm install && npm run build`
+# na maquina de quem recebe. Quem entrega copia a pasta com dist/ dentro.
+dist/
+
+# gerado por ferramentas/baixar_texturas.mjs; o resultado em publico/ e que vai versionado
+.cache-texturas/
